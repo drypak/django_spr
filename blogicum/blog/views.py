@@ -43,6 +43,7 @@ posts = [
     },
 ]
 
+
 def index(request):
     sorted_posts = sorted(posts, key=lambda p: p['id'], reverse=True)
     return render(request, 'blog/index.html', {'posts': sorted_posts})
@@ -54,8 +55,12 @@ def post_detail(request, id):
         category_slug = post['category']
     else:
         category_slug = None
-    return render(request, 'blog/detail.html', {'post': post, 'category_slug': category_slug})
+    return render(
+        request, 'blog/detail.html',
+        {'post': post, 'category_slug': category_slug})
+
 
 def category_posts(request, category_slug):
-    return render(request, 'blog/category.html', {'category_slug': category_slug, 'posts': []})
-
+    return render(
+        request, 'blog/category.html',
+        {'category_slug': category_slug, 'posts': []})
