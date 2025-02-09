@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ post.title }}
+{% endblock %}
+
+{% block content %}
+  <div class="container py-5">
+    <article>
+      <h1>{{ post.title }}</h1>
+      <ul>
+        <li>Место: {{ post.location }}</li>
+        <li>Дата: {{ post.date }}</li>
+        <li>Категория: 
+          {% if post.category and post.category.slug %}
+            <a href="{% url 'blog:category_posts' post.category.slug %}">{{ post.category.title }}</a>
+          {% else %}
+            Нет категории
+          {% endif %}
+        </li>
+      </ul>
+      <p>{{ post.text }}</p>
+    </article>
+  </div>
+{% endblock %}
